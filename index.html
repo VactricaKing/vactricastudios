@@ -22,7 +22,7 @@
             color: var(--text-white);
             font-family: 'Courier New', Courier, monospace;
             line-height: 1.6;
-            overflow-x: hidden; /* Evita desplazamiento lateral indeseado */
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -74,7 +74,7 @@
 
         /* --- HERO (PORTADA) --- */
         .hero {
-            min-height: 85vh; /* Usamos min-height para que no se corte en móviles */
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -120,7 +120,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1000px; /* Ajustado para que se vea bien con menos tarjetas */
             margin: 0 auto;
         }
 
@@ -140,43 +140,32 @@
             font-size: 0.8rem;
         }
 
-        /* =========================================
-           VERSION MÓVIL (AQUÍ ESTÁ LA MAGIA) 
-           ========================================= */
+        /* --- MEDIA QUERY MÓVIL --- */
         @media (max-width: 768px) {
-            /* Navbar en columna */
             .navbar {
                 flex-direction: column;
                 padding: 1rem;
                 gap: 1rem;
             }
-            
             .nav-links {
                 gap: 1.5rem;
                 font-size: 0.9rem;
             }
-
-            /* Texto ajustado para que no se rompa */
             .hero h1 {
-                font-size: 2.2rem; /* Mucho más pequeño */
-                letter-spacing: 0; /* Menos espacio entre letras */
+                font-size: 2.2rem;
+                letter-spacing: 0;
             }
-
             .hero p {
                 font-size: 1rem;
                 padding: 0 10px;
             }
-
-            /* Botón ancho fácil de tocar */
             .mc-btn {
                 width: 100%;
                 max-width: 300px;
             }
-
             .content-section {
                 padding: 3rem 1rem;
             }
-            
             .section-title {
                 font-size: 1.8rem;
             }
@@ -190,38 +179,29 @@
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#server">Server</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <h1>Bienvenido al<br>Universo Vactrica</h1>
-        <p>Desarrollo de videojuegos, mods y nuestro propio servidor de Minecraft.</p>
-        <a href="#server" class="mc-btn">JUGAR AHORA</a>
+        <p>Desarrollo de videojuegos, mods en C y experimentación con código.</p>
+        <a href="#proyectos" class="mc-btn">VER PROYECTOS</a>
     </section>
 
     <section id="proyectos" class="content-section">
-        <h2 class="section-title">Proyectos</h2>
+        <h2 class="section-title">Mis Proyectos</h2>
         
         <div class="grid-container">
             <div class="grid-card">
                 <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Radiant Prisma</h3>
-                <p style="color:var(--text-gray); margin-bottom:1rem;">Proyecto principal en C y RayLib.</p>
-                <a href="#" style="color: var(--mc-green-light);">Ver Detalles</a>
-            </div>
-
-            <div id="server" class="grid-card" style="border-color: var(--mc-green-dark);">
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Minecraft Server</h3>
-                <p style="color:var(--text-gray); margin-bottom:1rem;">Survival con mods.</p>
-                <div style="background:#000; padding: 10px; font-family: monospace; border: 1px dashed #555;">
-                    IP: vactricastudios.dpdns.org
-                </div>
+                <p style="color:var(--text-gray); margin-bottom:1rem;">Proyecto principal desarrollado en C y RayLib.</p>
+                <a href="#" style="color: var(--mc-green-light);">Ver Detalles ></a>
             </div>
 
             <div class="grid-card">
                 <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Pac-Man Maker</h3>
-                <p style="color:var(--text-gray); margin-bottom:1rem;">Crea tus niveles.</p>
-                <a href="#" style="color: var(--mc-green-light);">Descargar</a>
+                <p style="color:var(--text-gray); margin-bottom:1rem;">Juego fanmade para crear y compartir niveles.</p>
+                <a href="#" style="color: var(--mc-green-light);">Descargar ></a>
             </div>
         </div>
     </section>
