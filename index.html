@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vactrica Studios</title>
+    <style>
+        body {
+            background-color: #121212; /* Fondo oscuro */
+            color: #ffffff; /* Texto blanco */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .domain-text {
+            color: #ffcc00; /* Color amarillo/dorado para resaltar la URL */
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #00ff00; /* Verde estilo terminal */
+            animation: parpadeo 1.5s infinite;
+        }
+        
+        @keyframes parpadeo {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-title">This web <span id="url-placeholder" class="domain-text">...</span> Is in Development</h1>
+    
+    <p>Coming Soon...</p>
+
+    <script>
+        // Este pequeño script detecta la dirección real
+        // window.location.hostname te da "vactricastudios.dpdns.org"
+        document.getElementById('url-placeholder').innerText = window.location.hostname;
+    </script>
+
+</body>
+</html>
