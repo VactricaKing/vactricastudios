@@ -6,12 +6,19 @@
     <title>Vactrica Studios</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
+        /* --- CARGAR TU FUENTE PERSONALIZADA --- */
+        /* IMPORTANTE: Sube el archivo 'pixcon.ttf' a GitHub */
+        @font-face {
+            font-family: 'Pixcon';
+            src: url('pixcon.ttf') format('truetype');
+        }
+
         /* --- VARIABLES Y RESET --- */
         :root {
-            /* --- PALETA DE 3 TONOS PARA EL BOTÓN --- */
-            --purple-face: #961996;    /* 1. Cara principal (Tu morado normal) */
-            --purple-border: #5e0f5e;  /* 2. El borde 3D (Oscuro intermedio) */
-            --purple-shadow: #2e052e;  /* 3. La sombra final (El más oscuro, casi negro) */
+            /* PALETA DE COLORES PÚRPURA */
+            --purple-face: #961996;    /* 1. Cara principal */
+            --purple-border: #5e0f5e;  /* 2. Borde 3D */
+            --purple-shadow: #2e052e;  /* 3. Sombra profunda */
             
             --bg-dark: #1c1c1c;
             --bg-darker: #111111;
@@ -24,9 +31,13 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
-            font-family: 'Courier New', Courier, monospace;
+            
+            /* AQUÍ APLICAMOS TU FUENTE A TODO */
+            font-family: 'Pixcon', monospace; 
+            
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 14px; /* Ajuste base para fuentes pixeladas */
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -47,49 +58,45 @@
         }
 
         .nav-logo img {
-            height: 50px;
+            height: 50px; /* Ajusta esto si tu logo se ve muy grande/chico */
             width: auto;
             display: block;
+            image-rendering: pixelated; /* Para que el logo pixel art se vea nítido */
         }
 
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* --- BOTONES CON EFECTO DE 3 NIVELES --- */
+        /* --- BOTONES (ESTILO BLOQUE 3D) --- */
         .mc-btn {
             display: inline-block;
-            /* NIVEL 1: Cara principal */
             background-color: var(--purple-face);
             color: white;
             padding: 12px 30px;
             font-weight: bold;
             text-transform: uppercase;
             
-            /* NIVEL 2: Bordes laterales e inferiores (Oscuro intermedio) */
+            /* Efecto 3D de 3 tonos */
             border: 3px solid var(--purple-border);
-            /* Bordes de luz (Arriba e Izquierda) para acentuar el 3D */
             border-top-color: #c44ec4; 
             border-left-color: #c44ec4; 
-            
-            /* NIVEL 3: Sombra sólida final (El más oscuro) */
             box-shadow: 0 4px 0 var(--purple-shadow); 
             
             cursor: pointer;
             font-size: 1.1rem;
-            text-shadow: 1px 1px 0px var(--purple-border);
+            text-shadow: 2px 2px 0px var(--purple-border); /* Sombra al texto para legibilidad */
         }
         
         .mc-btn:hover {
-            background-color: #ad34ad; /* Se ilumina un poco al pasar el mouse */
+            background-color: #ad34ad; 
         }
         
         .mc-btn:active {
             transform: translateY(4px);
-            /* Al presionar, la sombra desaparece para simular hundimiento */
             box-shadow: 0 0 0 var(--purple-shadow);
         }
 
-        /* --- HERO --- */
+        /* --- HERO (PORTADA) --- */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -102,16 +109,15 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem; /* Un poco menos gigante para fuentes pixel */
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: -2px;
-            text-shadow: 3px 3px 0px #000;
-            line-height: 1.2;
+            text-shadow: 4px 4px 0px #000; /* Sombra dura retro */
+            line-height: 1.4;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
             max-width: 600px;
             margin-bottom: 2.5rem;
@@ -125,7 +131,7 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 3rem;
             text-transform: uppercase;
             border-bottom: 4px solid var(--purple-face);
@@ -157,41 +163,20 @@
             text-align: center;
             background-color: black;
             color: var(--text-gray);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
 
-        /* --- MEDIA QUERY MÓVIL --- */
+        /* --- MÓVIL --- */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 padding: 1rem;
                 gap: 1rem;
             }
-            .nav-logo img {
-                height: 60px;
-            }
-            .nav-links {
-                gap: 1.5rem;
-                font-size: 0.9rem;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-                letter-spacing: 0;
-            }
-            .hero p {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-            .mc-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            .content-section {
-                padding: 3rem 1rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
+            .nav-logo img { height: 60px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.9rem; padding: 0 10px; }
+            .mc-btn { width: 100%; max-width: 300px; }
         }
     </style>
 </head>
@@ -199,7 +184,7 @@
 
     <nav class="navbar">
         <div class="nav-logo">
-            <img src="logo.png" alt="Vactrica Studios Logo">
+            <img src="logo.png" alt="Vactrica Studios">
         </div>
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
@@ -218,14 +203,14 @@
         
         <div class="grid-container">
             <div class="grid-card">
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Radiant Prisma</h3>
-                <p style="color:var(--text-gray); margin-bottom:1rem;">Proyecto principal desarrollado en C y RayLib.</p>
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Radiant Prisma</h3>
+                <p style="color:var(--text-gray); margin-bottom:1rem; font-size: 0.9rem;">Proyecto principal desarrollado en C y RayLib.</p>
                 <a href="#" class="card-link">Ver Detalles ></a>
             </div>
 
             <div class="grid-card">
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Pac-Man Maker</h3>
-                <p style="color:var(--text-gray); margin-bottom:1rem;">Juego fanmade para crear y compartir niveles.</p>
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Pac-Man Maker</h3>
+                <p style="color:var(--text-gray); margin-bottom:1rem; font-size: 0.9rem;">Juego fanmade para crear y compartir niveles.</p>
                 <a href="#" class="card-link">Descargar ></a>
             </div>
         </div>
