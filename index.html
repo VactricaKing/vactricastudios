@@ -5,35 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vactrica Studios</title>
     <style>
-        /* --- VARIABLES GLOBALES Y RESET --- */
+        /* --- VARIABLES Y RESET --- */
         :root {
-            --mc-green-dark: #3c8527;  /* Verde oscuro (borde inferior) */
-            --mc-green-light: #5ebf46; /* Verde claro (cara principal) */
-            --bg-dark: #1c1c1c;        /* Fondo principal casi negro */
-            --bg-darker: #111111;      /* Fondo secundario más oscuro */
-            --text-white: #e0e0e0;     /* Blanco hueso para texto */
-            --text-gray: #a0a0a0;      /* Gris para subtítulos */
+            --mc-green-dark: #3c8527;
+            --mc-green-light: #5ebf46;
+            --bg-dark: #1c1c1c;
+            --bg-darker: #111111;
+            --text-white: #e0e0e0;
+            --text-gray: #a0a0a0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
-            /* Usamos una fuente monoespaciada por ahora para darle toque técnico, 
-               luego podemos poner una fuente de píxeles real */
-            font-family: 'Courier New', Courier, monospace; 
+            font-family: 'Courier New', Courier, monospace;
             line-height: 1.6;
+            overflow-x: hidden; /* Evita desplazamiento lateral indeseado */
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- BARRA DE NAVEGACIÓN (Navbar) --- */
+        /* --- NAVBAR --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -52,45 +47,40 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
         .nav-logo span { color: var(--mc-green-light); }
 
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--mc-green-light); }
 
-        /* --- BOTONES ESTILO MINECRAFT --- */
+        /* --- BOTONES --- */
         .mc-btn {
             display: inline-block;
             background-color: var(--mc-green-light);
             color: white;
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-weight: bold;
             text-transform: uppercase;
-            /* El truco para el efecto 3D de bloque: bordes sólidos gruesos */
             border: 3px solid var(--bg-darker);
-            border-bottom-color: var(--mc-green-dark); /* Sombra inferior */
-            border-right-color: var(--mc-green-dark);  /* Sombra derecha */
-            box-shadow: 0 4px 0 #2a5e1c; /* Sombra de bloque extra */
+            border-bottom-color: var(--mc-green-dark);
+            border-right-color: var(--mc-green-dark);
+            box-shadow: 0 4px 0 #2a5e1c;
             cursor: pointer;
-            transition: transform 0.1s;
+            font-size: 1.1rem;
+        }
+        .mc-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #2a5e1c;
         }
 
-        .mc-btn:hover {
-            background-color: #6fd352; /* Un poco más brillante al pasar el mouse */
-            transform: translateY(2px); /* Pequeño efecto de presionar */
-            box-shadow: 0 2px 0 #2a5e1c;
-        }
-
-        /* --- SECCIÓN HERO (Portada Principal) --- */
+        /* --- HERO (PORTADA) --- */
         .hero {
-            height: 85vh; /* Ocupa casi toda la pantalla */
+            min-height: 85vh; /* Usamos min-height para que no se corte en móviles */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Un degradado oscuro temporal hasta que pongas una imagen de fondo */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), #2a2a2a;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), #2a2a2a;
             padding: 2rem;
         }
 
@@ -99,17 +89,18 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: -2px;
-            text-shadow: 3px 3px 0px #000; /* Sombra de texto dura */
+            text-shadow: 3px 3px 0px #000;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--text-gray);
             max-width: 600px;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* --- SECCIÓN DE CONTENIDO (Cuadrícula) --- */
+        /* --- CONTENIDO --- */
         .content-section {
             padding: 4rem 2rem;
             background-color: var(--bg-darker);
@@ -120,38 +111,75 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             text-transform: uppercase;
+            border-bottom: 4px solid #333;
+            display: inline-block;
+            padding-bottom: 10px;
         }
 
         .grid-container {
             display: grid;
-            /* Crea columnas automáticas responsive */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Tarjetas de proyectos */
         .grid-card {
             background-color: var(--bg-dark);
             border: 3px solid #333;
             padding: 2rem;
             transition: 0.3s;
         }
-        .grid-card:hover {
-            border-color: var(--mc-green-light);
-            transform: translateY(-5px);
-        }
-        .card-title { font-size: 1.5rem; margin-bottom: 1rem; }
-        .card-desc { color: var(--text-gray); margin-bottom: 1.5rem; }
+        .grid-card:hover { border-color: var(--mc-green-light); }
 
-        /* --- FOOTER --- */
         footer {
             padding: 2rem;
             text-align: center;
             background-color: black;
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+        }
+
+        /* =========================================
+           VERSION MÓVIL (AQUÍ ESTÁ LA MAGIA) 
+           ========================================= */
+        @media (max-width: 768px) {
+            /* Navbar en columna */
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            /* Texto ajustado para que no se rompa */
+            .hero h1 {
+                font-size: 2.2rem; /* Mucho más pequeño */
+                letter-spacing: 0; /* Menos espacio entre letras */
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            /* Botón ancho fácil de tocar */
+            .mc-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .content-section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -162,44 +190,44 @@
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#server">Servidor</a></li>
+            <li><a href="#server">Server</a></li>
         </ul>
     </nav>
 
     <section class="hero">
-        <h1>Bienvenido al Universo Vactrica</h1>
-        <p>Desarrollo de videojuegos, mods y nuestro propio servidor de Minecraft. Únete a la comunidad.</p>
+        <h1>Bienvenido al<br>Universo Vactrica</h1>
+        <p>Desarrollo de videojuegos, mods y nuestro propio servidor de Minecraft.</p>
         <a href="#server" class="mc-btn">JUGAR AHORA</a>
     </section>
 
     <section id="proyectos" class="content-section">
-        <h2 class="section-title">Nuestros Proyectos</h2>
+        <h2 class="section-title">Proyectos</h2>
         
         <div class="grid-container">
             <div class="grid-card">
-                <h3 class="card-title">Radiant Prisma</h3>
-                <p class="card-desc">Proyecto principal en desarrollo usando C y RayLib. La nueva era.</p>
-                <a href="#" style="color: var(--mc-green-light); text-decoration: underline;">Ver más ></a>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Radiant Prisma</h3>
+                <p style="color:var(--text-gray); margin-bottom:1rem;">Proyecto principal en C y RayLib.</p>
+                <a href="#" style="color: var(--mc-green-light);">Ver Detalles</a>
             </div>
 
-            <div id="server" class="grid-card">
-                <h3 class="card-title">Servidor de Minecraft</h3>
-                <p class="card-desc">Survival con mods y comunidad activa. ¡Entra ya!</p>
-                <div style="background:#111; padding: 5px; margin-bottom: 10px; font-family: monospace;">
+            <div id="server" class="grid-card" style="border-color: var(--mc-green-dark);">
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Minecraft Server</h3>
+                <p style="color:var(--text-gray); margin-bottom:1rem;">Survival con mods.</p>
+                <div style="background:#000; padding: 10px; font-family: monospace; border: 1px dashed #555;">
                     IP: vactricastudios.dpdns.org
                 </div>
             </div>
 
             <div class="grid-card">
-                <h3 class="card-title">Pac-Man Maker</h3>
-                <p class="card-desc">Juego fanmade para crear y jugar tus propios niveles.</p>
-                <a href="#" style="color: var(--mc-green-light); text-decoration: underline;">Descargar ></a>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Pac-Man Maker</h3>
+                <p style="color:var(--text-gray); margin-bottom:1rem;">Crea tus niveles.</p>
+                <a href="#" style="color: var(--mc-green-light);">Descargar</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Vactrica Studios. Not an official Minecraft product.</p>
+        <p>© 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
     </footer>
 
 </body>
