@@ -8,9 +8,10 @@
     <style>
         /* --- VARIABLES Y RESET --- */
         :root {
-            --main-purple: #961996;       /* Tu púrpura vibrante */
-            /* NUEVO TONO OSCURO: Más profundo y serio */
-            --main-purple-dark: #3b0a3b;  
+            /* --- PALETA DE 3 TONOS PARA EL BOTÓN --- */
+            --purple-face: #961996;    /* 1. Cara principal (Tu morado normal) */
+            --purple-border: #5e0f5e;  /* 2. El borde 3D (Oscuro intermedio) */
+            --purple-shadow: #2e052e;  /* 3. La sombra final (El más oscuro, casi negro) */
             
             --bg-dark: #1c1c1c;
             --bg-darker: #111111;
@@ -37,8 +38,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.8rem 2rem;
-            background-color: var(--main-purple); 
-            border-bottom: 3px solid var(--main-purple-dark);
+            background-color: var(--purple-face); 
+            border-bottom: 3px solid var(--purple-border);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -54,33 +55,38 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* --- BOTONES MEJORADOS --- */
+        /* --- BOTONES CON EFECTO DE 3 NIVELES --- */
         .mc-btn {
             display: inline-block;
-            background-color: var(--main-purple);
+            /* NIVEL 1: Cara principal */
+            background-color: var(--purple-face);
             color: white;
             padding: 12px 30px;
             font-weight: bold;
             text-transform: uppercase;
-            /* Bordes 3D */
-            border: 3px solid var(--main-purple-dark);
-            border-top-color: #c44ec4; /* Luz arriba */
-            border-left-color: #c44ec4; /* Luz izquierda */
             
-            /* Sombra sólida con el nuevo tono oscuro */
-            box-shadow: 0 4px 0 var(--main-purple-dark); 
+            /* NIVEL 2: Bordes laterales e inferiores (Oscuro intermedio) */
+            border: 3px solid var(--purple-border);
+            /* Bordes de luz (Arriba e Izquierda) para acentuar el 3D */
+            border-top-color: #c44ec4; 
+            border-left-color: #c44ec4; 
+            
+            /* NIVEL 3: Sombra sólida final (El más oscuro) */
+            box-shadow: 0 4px 0 var(--purple-shadow); 
+            
             cursor: pointer;
             font-size: 1.1rem;
-            text-shadow: 1px 1px 0px var(--main-purple-dark);
+            text-shadow: 1px 1px 0px var(--purple-border);
         }
+        
         .mc-btn:hover {
-            background-color: #ad34ad;
-            /* Al pasar el mouse, la sombra oscura se mantiene firme */
+            background-color: #ad34ad; /* Se ilumina un poco al pasar el mouse */
         }
+        
         .mc-btn:active {
             transform: translateY(4px);
-            /* Al presionar, desaparece la sombra creando el efecto de hundirse */
-            box-shadow: 0 0 0 var(--main-purple-dark);
+            /* Al presionar, la sombra desaparece para simular hundimiento */
+            box-shadow: 0 0 0 var(--purple-shadow);
         }
 
         /* --- HERO --- */
@@ -122,7 +128,7 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             text-transform: uppercase;
-            border-bottom: 4px solid var(--main-purple);
+            border-bottom: 4px solid var(--purple-face);
             display: inline-block;
             padding-bottom: 10px;
         }
@@ -141,9 +147,9 @@
             padding: 2rem;
             transition: 0.3s;
         }
-        .grid-card:hover { border-color: var(--main-purple); }
+        .grid-card:hover { border-color: var(--purple-face); }
         
-        .card-link { color: var(--main-purple); font-weight: bold; }
+        .card-link { color: var(--purple-face); font-weight: bold; }
         .card-link:hover { text-decoration: underline; }
 
         footer {
