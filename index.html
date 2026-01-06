@@ -14,17 +14,14 @@
 
         /* --- VARIABLES Y RESET --- */
         :root {
-            /* PALETA DE COLORES P脷RPURA */
-            --purple-face: #961996;    /* 1. Cara principal */
-            --purple-border: #5e0f5e;  /* 2. Borde 3D */
-            --purple-shadow: #2e052e;  /* 3. Sombra profunda */
-            
+            --purple-face: #961996;
+            --purple-border: #5e0f5e;
+            --purple-shadow: #2e052e;
             --bg-dark: #1c1c1c;
             --bg-darker: #111111;
             --text-white: #e0e0e0;
             --text-gray: #a0a0a0;
-            
-            --minecraft-green: #3b8526; /* Color especial para Bedrock */
+            --minecraft-green: #3b8526;
             --minecraft-green-shadow: #1e4213;
         }
 
@@ -66,7 +63,7 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* --- BOTONES GENERALES (ESTILO BLOQUE 3D) --- */
+        /* --- BOTONES --- */
         .mc-btn {
             display: inline-block;
             background-color: var(--purple-face);
@@ -83,28 +80,27 @@
             text-shadow: 2px 2px 0px var(--purple-border);
             margin-top: 10px;
         }
-        
         .mc-btn:hover { background-color: #ad34ad; }
         .mc-btn:active { transform: translateY(4px); box-shadow: 0 0 0 var(--purple-shadow); }
 
-        /* --- HERO (PORTADA) --- */
+        /* --- HERO --- */
         .hero {
-            min-height: 90vh; /* Un poco m谩s alto para que quepa el server */
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), #2a2a2a;
-            padding: 2rem;
+            padding: 2rem 1rem; /* Reducido padding lateral en móvil */
         }
 
         .hero h1 {
-            font-size: 3rem; 
+            font-size: 2.5rem; /* Ajustado para móviles */
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             text-shadow: 4px 4px 0px #000; 
-            line-height: 1.4;
+            line-height: 1.2;
         }
 
         .hero p {
@@ -114,13 +110,13 @@
             margin-bottom: 2rem;
         }
 
-        /* --- WIDGET DEL SERVIDOR (NUEVO) --- */
+        /* --- WIDGET DEL SERVIDOR CORREGIDO --- */
         .server-widget {
             background-color: rgba(0, 0, 0, 0.6);
             border: 3px solid var(--purple-border);
-            padding: 20px;
+            padding: 15px; /* Padding optimizado */
             width: 100%;
-            max-width: 500px;
+            max-width: 450px; /* Un poco más estrecho para estética */
             margin-bottom: 2rem;
             box-shadow: 0 0 20px rgba(150, 25, 150, 0.2);
             position: relative;
@@ -134,31 +130,34 @@
             letter-spacing: 1px;
         }
 
-        /* Cajita IP Interactiva */
+        /* CAJITA IP: Ahora maneja texto largo */
         .ip-box-container {
             background-color: #000;
             border: 2px dashed var(--text-gray);
-            padding: 10px;
+            padding: 12px 5px; /* Menos padding lateral */
             margin-bottom: 5px;
             cursor: pointer;
             transition: 0.2s;
             position: relative;
+            
+            /* Magia para que no se salga el texto */
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .ip-box-container:hover {
-            border-color: var(--purple-face);
-            background-color: #0a0a0a;
-        }
-
-        .ip-box-container:active {
-            transform: scale(0.98);
-            background-color: #1a1a1a;
-        }
+        .ip-box-container:hover { border-color: var(--purple-face); background-color: #0a0a0a; }
+        .ip-box-container:active { transform: scale(0.98); background-color: #1a1a1a; }
 
         .ip-text {
-            font-family: monospace;
-            font-size: 1.1rem;
+            font-family: monospace; /* Fallback */
             color: #fff;
+            
+            /* CORRECCIÓN DE TAMAÑO */
+            font-size: 1.1rem; 
+            word-break: break-all; /* Si es larguísimo, baja de línea */
+            line-height: 1.2;
         }
 
         .copy-feedback {
@@ -168,7 +167,6 @@
             margin-bottom: 15px;
         }
 
-        /* Bot贸n Espec铆fico para Bedrock (Verde) */
         .bedrock-btn {
             display: block;
             width: 100%;
@@ -184,60 +182,40 @@
             text-shadow: 2px 2px 0px #1e4213;
             margin-bottom: 10px;
             font-size: 0.9rem;
+            white-space: normal; /* Permitir que el texto del botón baje si es necesario */
+            line-height: 1.2;
         }
 
         .bedrock-btn:hover { background-color: #4ca633; }
         .bedrock-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
 
         /* --- CONTENIDO --- */
-        .content-section {
-            padding: 4rem 2rem;
-            background-color: var(--bg-darker);
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-            border-bottom: 4px solid var(--purple-face);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .grid-card {
-            background-color: var(--bg-dark);
-            border: 3px solid #333;
-            padding: 2rem;
-            transition: 0.3s;
-        }
+        .content-section { padding: 4rem 2rem; background-color: var(--bg-darker); text-align: center; }
+        .section-title { font-size: 2rem; margin-bottom: 3rem; text-transform: uppercase; border-bottom: 4px solid var(--purple-face); display: inline-block; padding-bottom: 10px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .grid-card { background-color: var(--bg-dark); border: 3px solid #333; padding: 2rem; transition: 0.3s; }
         .grid-card:hover { border-color: var(--purple-face); }
-        
         .card-link { color: var(--purple-face); font-weight: bold; }
-        .card-link:hover { text-decoration: underline; }
+        footer { padding: 2rem; text-align: center; background-color: black; color: var(--text-gray); font-size: 0.7rem; }
 
-        footer {
-            padding: 2rem;
-            text-align: center;
-            background-color: black;
-            color: var(--text-gray);
-            font-size: 0.7rem;
-        }
-
-        /* --- M脫VIL --- */
-        @media (max-width: 768px) {
+        /* --- MÓVIL OPTIMIZADO --- */
+        @media (max-width: 600px) {
             .navbar { flex-direction: column; padding: 1rem; gap: 1rem; }
-            .nav-logo img { height: 60px; }
+            .nav-logo img { height: 45px; }
+            
+            /* Ajuste crítico para que la IP quepa */
             .hero h1 { font-size: 1.8rem; }
-            .mc-btn, .server-widget { width: 100%; }
+            .ip-text { 
+                font-size: 0.8rem; /* Letra más pequeña en móvil */
+            }
+            .server-widget {
+                padding: 10px;
+                width: 95%; /* Usar casi todo el ancho disponible */
+            }
+            .bedrock-btn {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -255,16 +233,16 @@
 
     <section class="hero">
         <h1>Bienvenido al<br>Universo Vactrica</h1>
-        <p>Desarrollo de videojuegos, mods en C y experimentaci贸n con c贸digo.</p>
+        <p>Desarrollo de videojuegos, mods en C y experimentación con código.</p>
         
         <div class="server-widget">
-            <div class="server-title">馃敟 脷nete al Servidor 馃敟</div>
+            <div class="server-title">¡Únete a nuestro servidor de Minecraft!</div>
             
             <a href="minecraft://?addExternalServer=Vactrinova|play.vactrinova.dpdns.org:23783" class="bedrock-btn">
-                馃殌 Abrir en Minecraft Bedrock
+                🚀 Abrir en Minecraft Bedrock
             </a>
 
-            <p style="font-size: 0.8rem; color: #888; margin: 10px 0;">- O COPIA LA IP MANUALMENTE -</p>
+            <p style="font-size: 0.7rem; color: #888; margin: 10px 0;">- O COPIA LA IP MANUALMENTE -</p>
 
             <div class="ip-box-container" onclick="copiarIP()">
                 <div class="ip-text" id="serverIp">play.vactrinova.dpdns.org:23783</div>
@@ -293,44 +271,45 @@
     </section>
 
     <footer>
-        <p>漏 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
+        <p>© 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
     </footer>
 
     <script>
         function copiarIP() {
             const ip = "play.vactrinova.dpdns.org:23783";
             const feedback = document.getElementById("copyFeedback");
+            const box = document.querySelector(".ip-box-container");
             
             navigator.clipboard.writeText(ip).then(function() {
-                // 脡xito
-                mostrarExito(feedback);
+                mostrarExito(feedback, box);
             }, function() {
-                // Fallo (m茅todo antiguo)
-                fallbackCopy(ip, feedback);
+                fallbackCopy(ip, feedback, box);
             });
         }
 
-        function fallbackCopy(text, feedbackElement) {
+        function fallbackCopy(text, feedbackElement, boxElement) {
             var textArea = document.createElement("textarea");
             textArea.value = text;
             document.body.appendChild(textArea);
             textArea.select();
             try {
                 document.execCommand('copy');
-                mostrarExito(feedbackElement);
+                mostrarExito(feedbackElement, boxElement);
             } catch (err) {
                 feedbackElement.innerText = "Error al copiar manual :(";
             }
             document.body.removeChild(textArea);
         }
 
-        function mostrarExito(element) {
-            element.innerText = "隆Copiado al portapapeles! 鉁�";
-            element.style.color = "#4CAF50"; // Verde 茅xito moment谩neo
+        function mostrarExito(element, box) {
+            element.innerText = "¡Copiado al portapapeles!";
+            element.style.color = "#4CAF50"; 
+            box.style.borderColor = "#4CAF50"; // Borde verde visual
             
             setTimeout(() => {
                 element.innerText = "Toca la caja para copiar";
-                element.style.color = "#a0a0a0"; // Volver al gris
+                element.style.color = "#a0a0a0";
+                box.style.borderColor = "#a0a0a0"; // Regresar al gris
             }, 2500);
         }
     </script>
