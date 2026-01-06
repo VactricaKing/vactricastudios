@@ -6,13 +6,11 @@
     <title>Vactrica Studios</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        /* --- CARGAR TU FUENTE PERSONALIZADA --- */
         @font-face {
             font-family: 'Pixcon';
             src: url('pixcon.ttf') format('truetype');
         }
 
-        /* --- VARIABLES Y RESET --- */
         :root {
             --purple-face: #961996;
             --purple-border: #5e0f5e;
@@ -23,6 +21,8 @@
             --text-gray: #a0a0a0;
             --minecraft-green: #3b8526;
             --minecraft-green-shadow: #1e4213;
+            --status-online: #4CAF50;
+            --status-offline: #ff5555;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,7 +39,6 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- NAVBAR --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -63,7 +62,6 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* --- BOTONES --- */
         .mc-btn {
             display: inline-block;
             background-color: var(--purple-face);
@@ -83,7 +81,6 @@
         .mc-btn:hover { background-color: #ad34ad; }
         .mc-btn:active { transform: translateY(4px); box-shadow: 0 0 0 var(--purple-shadow); }
 
-        /* --- HERO --- */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -92,11 +89,11 @@
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), #2a2a2a;
-            padding: 2rem 1rem; /* Reducido padding lateral en móvil */
+            padding: 2rem 1rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem; /* Ajustado para móviles */
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             text-shadow: 4px 4px 0px #000; 
@@ -110,13 +107,12 @@
             margin-bottom: 2rem;
         }
 
-        /* --- WIDGET DEL SERVIDOR CORREGIDO --- */
         .server-widget {
             background-color: rgba(0, 0, 0, 0.6);
             border: 3px solid var(--purple-border);
-            padding: 15px; /* Padding optimizado */
+            padding: 15px;
             width: 100%;
-            max-width: 450px; /* Un poco más estrecho para estética */
+            max-width: 450px;
             margin-bottom: 2rem;
             box-shadow: 0 0 20px rgba(150, 25, 150, 0.2);
             position: relative;
@@ -125,22 +121,66 @@
         .server-title {
             color: #c44ec4;
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* CAJITA IP: Ahora maneja texto largo */
+        .server-status-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .status-text {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .status-online .status-dot {
+            background-color: var(--status-online);
+            box-shadow: 0 0 10px var(--status-online), 0 0 5px var(--status-online);
+        }
+
+        .status-online .status-text {
+            color: var(--status-online);
+        }
+
+        .status-offline .status-dot {
+            background-color: var(--status-offline);
+            box-shadow: 0 0 10px var(--status-offline), 0 0 5px var(--status-offline);
+        }
+
+        .status-offline .status-text {
+            color: var(--status-offline);
+        }
+
         .ip-box-container {
             background-color: #000;
             border: 2px dashed var(--text-gray);
-            padding: 12px 5px; /* Menos padding lateral */
+            padding: 12px 5px;
             margin-bottom: 5px;
             cursor: pointer;
             transition: 0.2s;
             position: relative;
-            
-            /* Magia para que no se salga el texto */
             overflow: hidden; 
             display: flex;
             justify-content: center;
@@ -151,12 +191,10 @@
         .ip-box-container:active { transform: scale(0.98); background-color: #1a1a1a; }
 
         .ip-text {
-            font-family: monospace; /* Fallback */
+            font-family: monospace;
             color: #fff;
-            
-            /* CORRECCIÓN DE TAMAÑO */
             font-size: 1.1rem; 
-            word-break: break-all; /* Si es larguísimo, baja de línea */
+            word-break: break-all;
             line-height: 1.2;
         }
 
@@ -182,14 +220,13 @@
             text-shadow: 2px 2px 0px #1e4213;
             margin-bottom: 10px;
             font-size: 0.9rem;
-            white-space: normal; /* Permitir que el texto del botón baje si es necesario */
+            white-space: normal;
             line-height: 1.2;
         }
 
         .bedrock-btn:hover { background-color: #4ca633; }
         .bedrock-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
 
-        /* --- CONTENIDO --- */
         .content-section { padding: 4rem 2rem; background-color: var(--bg-darker); text-align: center; }
         .section-title { font-size: 2rem; margin-bottom: 3rem; text-transform: uppercase; border-bottom: 4px solid var(--purple-face); display: inline-block; padding-bottom: 10px; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
@@ -198,19 +235,17 @@
         .card-link { color: var(--purple-face); font-weight: bold; }
         footer { padding: 2rem; text-align: center; background-color: black; color: var(--text-gray); font-size: 0.7rem; }
 
-        /* --- MÓVIL OPTIMIZADO --- */
         @media (max-width: 600px) {
             .navbar { flex-direction: column; padding: 1rem; gap: 1rem; }
             .nav-logo img { height: 45px; }
             
-            /* Ajuste crítico para que la IP quepa */
             .hero h1 { font-size: 1.8rem; }
             .ip-text { 
-                font-size: 0.8rem; /* Letra más pequeña en móvil */
+                font-size: 0.8rem;
             }
             .server-widget {
                 padding: 10px;
-                width: 95%; /* Usar casi todo el ancho disponible */
+                width: 95%;
             }
             .bedrock-btn {
                 font-size: 0.8rem;
@@ -237,7 +272,13 @@
         
         <div class="server-widget">
             <div class="server-title">¡Únete a nuestro servidor de Minecraft!</div>
-            <p style="font-size: 0.7rem; color: #fff; margin: 8px 0;">Vactrinova 1.21.11</p>
+            <p style="font-size: 0.7rem; color: #fff; margin: 8px 0 5px 0;">Vactrinova 1.21.11</p>
+            
+            <div id="statusContainer" class="server-status-container status-offline">
+                <div class="status-dot"></div>
+                <div id="statusText" class="status-text">Cargando...</div>
+            </div>
+
             <a href="minecraft://?addExternalServer=Vactrinova|play.vactrinova.dpdns.org:23783" class="bedrock-btn">
                 Abrir en Minecraft Bedrock
             </a>
@@ -304,14 +345,37 @@
         function showSuccess(element, box) {
             element.innerText = "¡Copiado al portapapeles!";
             element.style.color = "#4CAF50"; 
-            box.style.borderColor = "#4CAF50"; // Borde verde visual
+            box.style.borderColor = "#4CAF50"; 
             
             setTimeout(() => {
                 element.innerText = "Toca la caja para copiar";
                 element.style.color = "#a0a0a0";
-                box.style.borderColor = "#a0a0a0"; // Regresar al gris
+                box.style.borderColor = "#a0a0a0"; 
             }, 2500);
         }
+
+        function checkServerStatus() {
+            const statusContainer = document.getElementById('statusContainer');
+            const statusText = document.getElementById('statusText');
+            
+            fetch('https://api.mcsrvstat.us/2/play.vactrinova.dpdns.org')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.online) {
+                        statusContainer.className = 'server-status-container status-online';
+                        statusText.innerText = 'Online';
+                    } else {
+                        statusContainer.className = 'server-status-container status-offline';
+                        statusText.innerText = 'Offline';
+                    }
+                })
+                .catch(error => {
+                    statusContainer.className = 'server-status-container status-offline';
+                    statusText.innerText = 'Offline';
+                });
+        }
+
+        window.onload = checkServerStatus;
     </script>
 
 </body>
