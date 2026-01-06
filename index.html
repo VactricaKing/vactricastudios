@@ -92,11 +92,11 @@
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), #2a2a2a;
-            padding: 2rem 1rem; /* Reducido padding lateral en móvil */
+            padding: 2rem 1rem; /* Reducido padding lateral en m贸vil */
         }
 
         .hero h1 {
-            font-size: 2.5rem; /* Ajustado para móviles */
+            font-size: 2.5rem; /* Ajustado para m贸viles */
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             text-shadow: 4px 4px 0px #000; 
@@ -116,7 +116,7 @@
             border: 3px solid var(--purple-border);
             padding: 15px; /* Padding optimizado */
             width: 100%;
-            max-width: 450px; /* Un poco más estrecho para estética */
+            max-width: 450px; /* Un poco m谩s estrecho para est茅tica */
             margin-bottom: 2rem;
             box-shadow: 0 0 20px rgba(150, 25, 150, 0.2);
             position: relative;
@@ -154,9 +154,9 @@
             font-family: monospace; /* Fallback */
             color: #fff;
             
-            /* CORRECCIÓN DE TAMAÑO */
+            /* CORRECCI脫N DE TAMA脩O */
             font-size: 1.1rem; 
-            word-break: break-all; /* Si es larguísimo, baja de línea */
+            word-break: break-all; /* Si es largu铆simo, baja de l铆nea */
             line-height: 1.2;
         }
 
@@ -182,7 +182,7 @@
             text-shadow: 2px 2px 0px #1e4213;
             margin-bottom: 10px;
             font-size: 0.9rem;
-            white-space: normal; /* Permitir que el texto del botón baje si es necesario */
+            white-space: normal; /* Permitir que el texto del bot贸n baje si es necesario */
             line-height: 1.2;
         }
 
@@ -198,15 +198,15 @@
         .card-link { color: var(--purple-face); font-weight: bold; }
         footer { padding: 2rem; text-align: center; background-color: black; color: var(--text-gray); font-size: 0.7rem; }
 
-        /* --- MÓVIL OPTIMIZADO --- */
+        /* --- M脫VIL OPTIMIZADO --- */
         @media (max-width: 600px) {
             .navbar { flex-direction: column; padding: 1rem; gap: 1rem; }
             .nav-logo img { height: 45px; }
             
-            /* Ajuste crítico para que la IP quepa */
+            /* Ajuste cr铆tico para que la IP quepa */
             .hero h1 { font-size: 1.8rem; }
             .ip-text { 
-                font-size: 0.8rem; /* Letra más pequeña en móvil */
+                font-size: 0.8rem; /* Letra m谩s peque帽a en m贸vil */
             }
             .server-widget {
                 padding: 10px;
@@ -233,15 +233,15 @@
 
     <section class="hero">
         <h1>Bienvenido al<br>Universo Vactrica</h1>
-        <p>Desarrollo de videojuegos, mods en C y experimentación con código.</p>
+        <p>Desarrollo de videojuegos, mods en C y experimentaci贸n con c贸digo.</p>
         
         <div class="server-widget">
-            <div class="server-title">¡Únete a nuestro servidor de Minecraft!</div>
+            <div class="server-title">Unete a nuestro servidor de Minecraft!</div>
             
             <a href="minecraft://?addExternalServer=Vactrinova|play.vactrinova.dpdns.org:23783" class="bedrock-btn">
-                🚀 Abrir en Minecraft Bedrock
+                Abrir en Minecraft Bedrock
             </a>
-
+            <p style="font-size: 0.7rem; color: #111; margin: 8px 0;">Servidor Crossplay</p>
             <p style="font-size: 0.7rem; color: #888; margin: 10px 0;">- O COPIA LA IP MANUALMENTE -</p>
 
             <div class="ip-box-container" onclick="copiarIP()">
@@ -271,7 +271,7 @@
     </section>
 
     <footer>
-        <p>© 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
+        <p>漏 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
     </footer>
 
     <script>
@@ -302,7 +302,7 @@
         }
 
         function mostrarExito(element, box) {
-            element.innerText = "¡Copiado al portapapeles!";
+            element.innerText = "隆Copiado al portapapeles!";
             element.style.color = "#4CAF50"; 
             box.style.borderColor = "#4CAF50"; // Borde verde visual
             
