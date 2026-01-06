@@ -281,7 +281,7 @@
             const box = document.querySelector(".ip-box-container");
             
             navigator.clipboard.writeText(ip).then(function() {
-                mostrarExito(feedback, box);
+                showSuccess(feedback, box);
             }, function() {
                 fallbackCopy(ip, feedback, box);
             });
@@ -294,14 +294,14 @@
             textArea.select();
             try {
                 document.execCommand('copy');
-                mostrarExito(feedbackElement, boxElement);
+                showSuccess(feedbackElement, boxElement);
             } catch (err) {
                 feedbackElement.innerText = "Error al copiar manual :(";
             }
             document.body.removeChild(textArea);
         }
 
-        function mostrarExito(element, box) {
+        function showSuccess(element, box) {
             element.innerText = "¡Copiado al portapapeles!";
             element.style.color = "#4CAF50"; 
             box.style.borderColor = "#4CAF50"; // Borde verde visual
