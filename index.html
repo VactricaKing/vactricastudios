@@ -361,7 +361,16 @@
             fetch('https://api.mcsrvstat.us/2/play.vactrinova.dpdns.org')
                 .then(response => response.json())
                 .then(data => {
-                    if (data.online) {
+                    let isOnline = data.online;
+
+                    if (isOnline && data.motd && data.motd.clean) {
+                        const motdString = data.motd.clean.join(" ").toUpperCase();
+                        if (motdString.includes("OFFLINE") || motdString.includes("FALIXNODES")) {
+                            isOnline = false;
+                        }
+                    }
+
+                    if (isOnline) {
                         statusContainer.className = 'server-status-container status-online';
                         statusText.innerText = 'Online';
                     } else {
