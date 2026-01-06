@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         /* --- CARGAR TU FUENTE PERSONALIZADA --- */
-        /* IMPORTANTE: Sube el archivo 'pixcon.ttf' a GitHub */
         @font-face {
             font-family: 'Pixcon';
             src: url('pixcon.ttf') format('truetype');
@@ -24,6 +23,9 @@
             --bg-darker: #111111;
             --text-white: #e0e0e0;
             --text-gray: #a0a0a0;
+            
+            --minecraft-green: #3b8526; /* Color especial para Bedrock */
+            --minecraft-green-shadow: #1e4213;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,13 +33,10 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
-            
-            /* AQUÍ APLICAMOS TU FUENTE A TODO */
             font-family: 'Pixcon', monospace; 
-            
             line-height: 1.6;
             overflow-x: hidden;
-            font-size: 14px; /* Ajuste base para fuentes pixeladas */
+            font-size: 14px; 
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -58,16 +57,16 @@
         }
 
         .nav-logo img {
-            height: 50px; /* Ajusta esto si tu logo se ve muy grande/chico */
+            height: 50px; 
             width: auto;
             display: block;
-            image-rendering: pixelated; /* Para que el logo pixel art se vea nítido */
+            image-rendering: pixelated; 
         }
 
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
 
-        /* --- BOTONES (ESTILO BLOQUE 3D) --- */
+        /* --- BOTONES GENERALES (ESTILO BLOQUE 3D) --- */
         .mc-btn {
             display: inline-block;
             background-color: var(--purple-face);
@@ -75,44 +74,36 @@
             padding: 12px 30px;
             font-weight: bold;
             text-transform: uppercase;
-            
-            /* Efecto 3D de 3 tonos */
             border: 3px solid var(--purple-border);
             border-top-color: #c44ec4; 
             border-left-color: #c44ec4; 
             box-shadow: 0 4px 0 var(--purple-shadow); 
-            
             cursor: pointer;
             font-size: 1.1rem;
-            text-shadow: 2px 2px 0px var(--purple-border); /* Sombra al texto para legibilidad */
+            text-shadow: 2px 2px 0px var(--purple-border);
+            margin-top: 10px;
         }
         
-        .mc-btn:hover {
-            background-color: #ad34ad; 
-        }
-        
-        .mc-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 var(--purple-shadow);
-        }
+        .mc-btn:hover { background-color: #ad34ad; }
+        .mc-btn:active { transform: translateY(4px); box-shadow: 0 0 0 var(--purple-shadow); }
 
         /* --- HERO (PORTADA) --- */
         .hero {
-            min-height: 85vh;
+            min-height: 90vh; /* Un poco más alto para que quepa el server */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), #2a2a2a;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), #2a2a2a;
             padding: 2rem;
         }
 
         .hero h1 {
-            font-size: 3rem; /* Un poco menos gigante para fuentes pixel */
-            margin-bottom: 1rem;
+            font-size: 3rem; 
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
-            text-shadow: 4px 4px 0px #000; /* Sombra dura retro */
+            text-shadow: 4px 4px 0px #000; 
             line-height: 1.4;
         }
 
@@ -120,8 +111,83 @@
             font-size: 1rem;
             color: var(--text-gray);
             max-width: 600px;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
+
+        /* --- WIDGET DEL SERVIDOR (NUEVO) --- */
+        .server-widget {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 3px solid var(--purple-border);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(150, 25, 150, 0.2);
+            position: relative;
+        }
+
+        .server-title {
+            color: #c44ec4;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cajita IP Interactiva */
+        .ip-box-container {
+            background-color: #000;
+            border: 2px dashed var(--text-gray);
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .ip-box-container:hover {
+            border-color: var(--purple-face);
+            background-color: #0a0a0a;
+        }
+
+        .ip-box-container:active {
+            transform: scale(0.98);
+            background-color: #1a1a1a;
+        }
+
+        .ip-text {
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .copy-feedback {
+            font-size: 0.8rem;
+            height: 20px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+
+        /* Botón Específico para Bedrock (Verde) */
+        .bedrock-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--minecraft-green);
+            color: white;
+            padding: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 3px solid var(--minecraft-green-shadow);
+            border-top-color: #5cb842;
+            border-left-color: #5cb842;
+            box-shadow: 0 4px 0 #152e0d;
+            text-shadow: 2px 2px 0px #1e4213;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .bedrock-btn:hover { background-color: #4ca633; }
+        .bedrock-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
 
         /* --- CONTENIDO --- */
         .content-section {
@@ -168,15 +234,10 @@
 
         /* --- MÓVIL --- */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
-            }
+            .navbar { flex-direction: column; padding: 1rem; gap: 1rem; }
             .nav-logo img { height: 60px; }
             .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.9rem; padding: 0 10px; }
-            .mc-btn { width: 100%; max-width: 300px; }
+            .mc-btn, .server-widget { width: 100%; }
         }
     </style>
 </head>
@@ -195,6 +256,21 @@
     <section class="hero">
         <h1>Bienvenido al<br>Universo Vactrica</h1>
         <p>Desarrollo de videojuegos, mods en C y experimentación con código.</p>
+        
+        <div class="server-widget">
+            <div class="server-title">🔥 Únete al Servidor 🔥</div>
+            
+            <a href="minecraft://?addExternalServer=Vactrinova|play.vactrinova.dpdns.org:23783" class="bedrock-btn">
+                🚀 Abrir en Minecraft Bedrock
+            </a>
+
+            <p style="font-size: 0.8rem; color: #888; margin: 10px 0;">- O COPIA LA IP MANUALMENTE -</p>
+
+            <div class="ip-box-container" onclick="copiarIP()">
+                <div class="ip-text" id="serverIp">play.vactrinova.dpdns.org:23783</div>
+            </div>
+            <div class="copy-feedback" id="copyFeedback">Toca la caja para copiar</div>
+        </div>
         <a href="#proyectos" class="mc-btn">VER PROYECTOS</a>
     </section>
 
@@ -219,6 +295,45 @@
     <footer>
         <p>© 2025 Vactrica Studios.<br>This web is made by @VactricaKing.</p>
     </footer>
+
+    <script>
+        function copiarIP() {
+            const ip = "play.vactrinova.dpdns.org:23783";
+            const feedback = document.getElementById("copyFeedback");
+            
+            navigator.clipboard.writeText(ip).then(function() {
+                // Éxito
+                mostrarExito(feedback);
+            }, function() {
+                // Fallo (método antiguo)
+                fallbackCopy(ip, feedback);
+            });
+        }
+
+        function fallbackCopy(text, feedbackElement) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                mostrarExito(feedbackElement);
+            } catch (err) {
+                feedbackElement.innerText = "Error al copiar manual :(";
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function mostrarExito(element) {
+            element.innerText = "¡Copiado al portapapeles! ✅";
+            element.style.color = "#4CAF50"; // Verde éxito momentáneo
+            
+            setTimeout(() => {
+                element.innerText = "Toca la caja para copiar";
+                element.style.color = "#a0a0a0"; // Volver al gris
+            }, 2500);
+        }
+    </script>
 
 </body>
 </html>
